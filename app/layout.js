@@ -1,7 +1,23 @@
-import { Inter } from "next/font/google";
+import { Poppins, Rubik, Nunito_Sans, Nunito } from "next/font/google";
+import { ToastContainer, toast } from 'react-toastify';
 import "./globals.css";
+import NextTopLoader from 'nextjs-toploader';
 
-const inter = Inter({ subsets: ["latin"] });
+const rubik = Rubik({
+  subsets: ["latin"],
+  display: "swap",
+  adjustFontFallback: false,
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-rubik",
+});
+
+const nunitoSans = Nunito_Sans({
+  subsets: ["latin"],
+  display: "swap",
+  adjustFontFallback: false,
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-nunito-sans",
+})
 
 export const metadata = {
   title: "Create Next App",
@@ -9,9 +25,31 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={rubik.className}>
+        {
+          <div>
+            <NextTopLoader showSpinner={false} color="#FFCC33" />
+            {children}
+            <ToastContainer
+              position="top-center"
+              autoClose={5000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              theme="dark"
+            />
+          </div>
+
+        }
+
+      </body>
     </html>
   );
 }
