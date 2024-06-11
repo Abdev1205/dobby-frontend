@@ -14,9 +14,8 @@ const Home = () => {
     return <LoadingAnimation />;
   }
   if (!loggedIn) {
-    return null;
+    router.push('/login')
   }
-  router.push('/login')
   return <LoadingAnimation />;
 }
 
